@@ -8,23 +8,19 @@
 		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>fr.insa.mas</groupId>
-	<artifactId>StudentInfoService</artifactId>
+	<groupId>fr.insa.arm</groupId>
+	<artifactId>DiscoveryService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>StudentInfoService</name>
-	<description>Example of collab</description>
+	<name>DiscoveryService</name>
+	<description>Discovery service of the INSA&apos;s rooms management application</description>
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>2021.0.0</spring-cloud.version> 
+		<spring-cloud.version>2021.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
-   			<groupId>org.springframework.cloud</groupId> 
-   			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> 
-  		</dependency> 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 
 		<dependency>
@@ -33,8 +29,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<!-- Nouvel ajout -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

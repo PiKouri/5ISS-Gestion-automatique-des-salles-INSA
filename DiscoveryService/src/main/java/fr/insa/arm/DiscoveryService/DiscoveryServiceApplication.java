@@ -1,13 +1,13 @@
-package fr.insa.mas.StudentInfoService;
+package fr.insa.arm.DiscoveryService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StudentInfoServiceApplication {
+public class DiscoveryServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StudentInfoServiceApplication.class, args);
+		SpringApplication.run(DiscoveryServiceApplication.class, args);
 	}
 
 }

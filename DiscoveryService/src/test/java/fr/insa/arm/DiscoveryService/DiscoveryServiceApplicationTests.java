@@ -1,10 +1,10 @@
-package fr.insa.mas.StudentInfoService;
+package fr.insa.arm.DiscoveryService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StudentInfoServiceApplicationTests {
+class DiscoveryServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
