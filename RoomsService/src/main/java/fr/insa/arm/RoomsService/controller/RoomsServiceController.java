@@ -17,37 +17,37 @@ public class RoomsServiceController {
 
     private INSA rooms = new INSA();
     
-    @GetMapping("")
+    @GetMapping("/roomsManagement")
     public ArrayList<Integer> getIds() {
         return rooms.getIds();
     }
 
-    @PostMapping("/{name}")
+    @PostMapping("/roomsManagement/{name}")
     public int addRoom(@PathVariable("name") String name) {
         return rooms.addRoom(name);
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/roomsManagement/{id}")
     public Room removeRoom(@PathVariable("id") int id) {
         return rooms.removeRoom(id);
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/roomsManagement/{id}")
     public String getRoomName(@PathVariable("id") int id) {
         return rooms.getRoomName(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/devicesManagement/{id}")
     public boolean affectDevice(@PathVariable("id") int idRoom, @RequestParam String type, @RequestBody Integer idDevice) {
         return rooms.affectDevice(idRoom, type, idDevice);
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/devicesManagement/{id}")
     public boolean removeDevice(@PathVariable("id") int idRoom, @RequestParam String type, @RequestBody Integer idDevice) {
         return rooms.removeDevice(idRoom, type, idDevice);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/devicesManagement/{id}")
     public ArrayList<Integer> getIdsDevice(@PathVariable("id") int idRoom, @RequestParam String type) {
         return rooms.getIdsDevice(idRoom, type);
     }
