@@ -27,7 +27,7 @@ public class LightSensorController {
         return sensorValues.replace(id, value);
     }
 
-    @PostMapping("/addSensor")
+    @PostMapping("/")
     public int addSensor() {
         sensorValues.put(currentMaxId, null);
         return currentMaxId++;
