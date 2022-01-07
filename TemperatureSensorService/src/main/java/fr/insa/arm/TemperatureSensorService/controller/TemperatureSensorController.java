@@ -1,4 +1,4 @@
-package fr.insa.arm.LightSensorService.controller;
+package fr.insa.arm.TemperatureSensorService.controller;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/lightSensor")
-public class LightSensorController {
+@RequestMapping("/temperatureSensor")
+public class TemperatureSensorController {
 
     private final Map<Integer, Float> sensorValues = new HashMap<>();
     private int currentMaxId = 0;
