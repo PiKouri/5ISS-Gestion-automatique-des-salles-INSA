@@ -5,35 +5,35 @@ import java.util.ArrayList;
 public class Room {
 	
 	static int compteur = 0;
-	private int id;
-	private String name;
-	private ArrayList<Integer> temperatureSensors;
-	private ArrayList<Integer> lightSensors;
-	private ArrayList<Integer> co2Sensors;
-	private ArrayList<Integer> gazSensors;
-	private ArrayList<Integer> studentCounters;
-	private ArrayList<Integer> doorActuator;
-	private ArrayList<Integer> windowActuator;
-	private ArrayList<Integer> alarmActuator;
-	private ArrayList<Integer> heatingActuator;
-	private ArrayList<Integer> climActuator;
-	private ArrayList<Integer> lightActuator;
+	private final int id;
+	private final String name;
+	private final ArrayList<Integer> temperatureSensors;
+	private final ArrayList<Integer> lightSensors;
+	private final ArrayList<Integer> co2Sensors;
+	private final ArrayList<Integer> gazSensors;
+	private final ArrayList<Integer> studentCounters;
+	private final ArrayList<Integer> doorActuator;
+	private final ArrayList<Integer> windowActuator;
+	private final ArrayList<Integer> alarmActuator;
+	private final ArrayList<Integer> heatingActuator;
+	private final ArrayList<Integer> climActuator;
+	private final ArrayList<Integer> lightActuator;
 	
 	public Room(String name) {
 		this.id = Room.compteur;
 		Room.compteur++;
 		this.name = name;
-		temperatureSensors = new ArrayList<Integer>();
-		lightSensors = new ArrayList<Integer>();
-		co2Sensors = new ArrayList<Integer>();
-		gazSensors = new ArrayList<Integer>();
-		studentCounters = new ArrayList<Integer>();
-		doorActuator = new ArrayList<Integer>();
-		windowActuator = new ArrayList<Integer>();
-		alarmActuator = new ArrayList<Integer>();
-		heatingActuator = new ArrayList<Integer>();
-		climActuator = new ArrayList<Integer>();
-		lightActuator = new ArrayList<Integer>();
+		temperatureSensors = new ArrayList<>();
+		lightSensors = new ArrayList<>();
+		co2Sensors = new ArrayList<>();
+		gazSensors = new ArrayList<>();
+		studentCounters = new ArrayList<>();
+		doorActuator = new ArrayList<>();
+		windowActuator = new ArrayList<>();
+		alarmActuator = new ArrayList<>();
+		heatingActuator = new ArrayList<>();
+		climActuator = new ArrayList<>();
+		lightActuator = new ArrayList<>();
 	}
 	
 	public int getId() {

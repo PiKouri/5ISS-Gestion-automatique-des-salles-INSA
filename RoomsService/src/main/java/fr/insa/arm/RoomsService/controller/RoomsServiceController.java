@@ -15,39 +15,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rooms")
 public class RoomsServiceController {
 
-    private INSA rooms = new INSA();
+    private final INSA rooms = new INSA();
     
-    @GetMapping("/roomsManagement")
+    @GetMapping("/")
     public ArrayList<Integer> getIds() {
         return rooms.getIds();
     }
 
-    @PostMapping("/roomsManagement/{name}")
-    public int addRoom(@PathVariable("name") String name) {
+    @PostMapping("/")
+    public int addRoom(@RequestBody String name) {
         return rooms.addRoom(name);
     }
     
-    @DeleteMapping("/roomsManagement/{id}")
+    @DeleteMapping("/{id}")
     public Room removeRoom(@PathVariable("id") int id) {
         return rooms.removeRoom(id);
     }
     
-    @GetMapping("/roomsManagement/{id}")
+    @GetMapping("/{id}")
     public String getRoomName(@PathVariable("id") int id) {
         return rooms.getRoomName(id);
     }
 
-    @PostMapping("/devicesManagement/{id}")
+    @PostMapping("/{id}/devices")
     public boolean affectDevice(@PathVariable("id") int idRoom, @RequestParam String type, @RequestBody Integer idDevice) {
         return rooms.affectDevice(idRoom, type, idDevice);
     }
     
-    @DeleteMapping("/devicesManagement/{id}")
+    @DeleteMapping("/{id}/devices")
     public boolean removeDevice(@PathVariable("id") int idRoom, @RequestParam String type, @RequestBody Integer idDevice) {
         return rooms.removeDevice(idRoom, type, idDevice);
     }
 
-    @GetMapping("/devicesManagement/{id}")
+    @GetMapping("/{id}/devices")
     public ArrayList<Integer> getIdsDevice(@PathVariable("id") int idRoom, @RequestParam String type) {
         return rooms.getIdsDevice(idRoom, type);
     }
