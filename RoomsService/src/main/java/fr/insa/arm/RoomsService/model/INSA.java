@@ -49,4 +49,28 @@ public class INSA {
 	public ArrayList<Integer> getIdsDevice(int idRoom, String type) {
 		return rooms.get(idRoom).getIdsDevice(type);
 	}
+
+	public Integer getPersons(int idRoom) {
+		Room room = rooms.get(idRoom);
+		if (room == null) return null;
+		else return room.countPeople;
+	}
+
+	public Integer addPersons(int idRoom, int nbPersons) {
+		Room room = rooms.get(idRoom);
+		if (room == null) return null;
+		else {
+			room.countPeople += nbPersons;
+			return room.countPeople;
+		}
+	}
+
+	public Integer removePersons(int idRoom, int nbPersons) {
+		Room room = rooms.get(idRoom);
+		if (room == null) return null;
+		else {
+			room.countPeople = Math.max(room.countPeople-nbPersons, 0); // Prevent having -1 person in a room
+			return room.countPeople;
+		}
+	}
 }

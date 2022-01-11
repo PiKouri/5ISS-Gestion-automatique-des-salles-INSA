@@ -52,4 +52,19 @@ public class RoomsServiceController {
         return rooms.getIdsDevice(idRoom, type);
     }
 
+    @GetMapping("/{id}/persons")
+    public Integer getPersons(@PathVariable("id") int id) {
+        return rooms.getPersons(id);
+    }
+
+    @PostMapping("/{id}/persons")
+    public Integer addPersons(@PathVariable("id") int idRoom, @RequestBody Integer nbPersons) {
+        return rooms.addPersons(idRoom, nbPersons);
+    }
+
+    @DeleteMapping("/{id}/persons")
+    public Integer removePersons(@PathVariable("id") int idRoom, @RequestBody Integer nbPersons) {
+        return rooms.removePersons(idRoom, nbPersons);
+    }
+
 }

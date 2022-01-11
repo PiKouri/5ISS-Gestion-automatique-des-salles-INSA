@@ -18,6 +18,7 @@ public class Room {
 	private final ArrayList<Integer> heatingActuator;
 	private final ArrayList<Integer> climActuator;
 	private final ArrayList<Integer> lightActuator;
+	public Integer countPeople = 0;
 	
 	public Room(String name) {
 		this.id = Room.compteur;
@@ -139,11 +140,9 @@ public class Room {
 			return climActuator;
 		case "LIGHT_A":
 			return lightActuator;
-		
 		default:
 			return null;
 		}
 	}
-	
 
 }
