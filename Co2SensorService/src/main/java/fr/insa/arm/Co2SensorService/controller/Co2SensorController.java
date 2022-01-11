@@ -29,7 +29,7 @@ public class Co2SensorController {
 
     @PostMapping("/")
     public int addSensor() {
-        sensorValues.put(currentMaxId, null);
+        sensorValues.put(currentMaxId, 0.0F);
         return currentMaxId++;
     }
 

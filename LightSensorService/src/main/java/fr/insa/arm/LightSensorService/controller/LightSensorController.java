@@ -29,7 +29,7 @@ public class LightSensorController {
 
     @PostMapping("/")
     public int addSensor() {
-        sensorValues.put(currentMaxId, null);
+        sensorValues.put(currentMaxId, 0.0F);
         return currentMaxId++;
     }
 
