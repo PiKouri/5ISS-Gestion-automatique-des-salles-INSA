@@ -53,15 +53,14 @@ public class INSA {
 	public Integer getPersons(int idRoom) {
 		Room room = rooms.get(idRoom);
 		if (room == null) return null;
-		else return room.countPeople;
+		else return room.getPersons();
 	}
 
 	public Integer addPersons(int idRoom, int nbPersons) {
 		Room room = rooms.get(idRoom);
 		if (room == null) return null;
 		else {
-			room.countPeople += nbPersons;
-			return room.countPeople;
+			return room.addPersons(nbPersons);
 		}
 	}
 
@@ -69,8 +68,16 @@ public class INSA {
 		Room room = rooms.get(idRoom);
 		if (room == null) return null;
 		else {
-			room.countPeople = Math.max(room.countPeople-nbPersons, 0); // Prevent having -1 person in a room
-			return room.countPeople;
+			return room.removePersons(nbPersons);
 		}
 	}
+
+	public Long getElapsedTime(int idRoom) {
+		Room room = rooms.get(idRoom);
+		if (room == null) return null;
+		else {
+			return room.getElapsedTime();
+		}
+	}
+
 }

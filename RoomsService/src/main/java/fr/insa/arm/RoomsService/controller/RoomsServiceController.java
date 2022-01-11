@@ -42,8 +42,8 @@ public class RoomsServiceController {
         return rooms.affectDevice(idRoom, type, idDevice);
     }
     
-    @DeleteMapping("/{id}/devices")
-    public boolean removeDevice(@PathVariable("id") int idRoom, @RequestParam String type, @RequestBody Integer idDevice) {
+    @DeleteMapping("/{id}/devices/{idDevice}")
+    public boolean removeDevice(@PathVariable("id") int idRoom, @RequestParam String type, @PathVariable("idDevice") Integer idDevice) {
         return rooms.removeDevice(idRoom, type, idDevice);
     }
 
@@ -57,14 +57,19 @@ public class RoomsServiceController {
         return rooms.getPersons(id);
     }
 
-    @PostMapping("/{id}/persons")
+    @PostMapping("/{id}/persons/add")
     public Integer addPersons(@PathVariable("id") int idRoom, @RequestBody Integer nbPersons) {
         return rooms.addPersons(idRoom, nbPersons);
     }
 
-    @DeleteMapping("/{id}/persons")
+    @PostMapping("/{id}/persons/remove")
     public Integer removePersons(@PathVariable("id") int idRoom, @RequestBody Integer nbPersons) {
         return rooms.removePersons(idRoom, nbPersons);
+    }
+
+    @GetMapping("/{id}/elapsedTime")
+    public Long getElapsedTime(@PathVariable("id") int idRoom) {
+        return rooms.getElapsedTime(idRoom);
     }
 
 }

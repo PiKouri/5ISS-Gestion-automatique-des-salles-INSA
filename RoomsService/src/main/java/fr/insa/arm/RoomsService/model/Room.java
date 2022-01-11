@@ -3,7 +3,26 @@ package fr.insa.arm.RoomsService.model;
 import java.util.ArrayList;
 
 public class Room {
-	
+
+	private class MyTimer {
+		private long start = 0L;
+
+		public MyTimer() { }
+
+		public void start() {
+			start = System.currentTimeMillis();
+		}
+
+		public void stop() {
+			start = 0L;
+		}
+
+		public long getElapsedTime() {
+			long end = System.currentTimeMillis();
+			return end - start;
+		}
+	}
+
 	static int compteur = 0;
 	private final int id;
 	private final String name;
@@ -18,8 +37,9 @@ public class Room {
 	private final ArrayList<Integer> heatingActuator;
 	private final ArrayList<Integer> climActuator;
 	private final ArrayList<Integer> lightActuator;
-	public Integer countPeople = 0;
-	
+	private Integer countPeople = 0;
+	private final MyTimer timer = new MyTimer();
+
 	public Room(String name) {
 		this.id = Room.compteur;
 		Room.compteur++;
@@ -143,6 +163,29 @@ public class Room {
 		default:
 			return null;
 		}
+	}
+
+	public Integer getPersons() {
+		return countPeople;
+	}
+
+	public Integer addPersons(int nbPersons) {
+		// If there was nobody before => starts the timer
+		if (countPeople == 0 && nbPersons > 0) timer.start();
+		countPeople = Math.max(countPeople+nbPersons, 0); // Prevent having -1 person in a room
+		return countPeople;
+	}
+
+	public Integer removePersons(int nbPersons) {
+		countPeople = Math.max(countPeople-nbPersons, 0); // Prevent having -1 person in a room
+		// If there is nobody left => stops the timer
+		if (countPeople == 0) timer.stop();
+		return countPeople;
+	}
+
+	public long getElapsedTime() {
+		if (countPeople > 0) return timer.getElapsedTime();
+		else return 0L;
 	}
 
 }
