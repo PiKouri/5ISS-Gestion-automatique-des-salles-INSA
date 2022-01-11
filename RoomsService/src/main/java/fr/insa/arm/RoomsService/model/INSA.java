@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class INSA {
 	
-	private Map<Integer,Room> rooms;
+	private final Map<Integer,Room> rooms;
 	
 	public INSA() {
-		rooms = new HashMap<Integer, Room>();
+		rooms = new HashMap<>();
 	}
 	
 	public ArrayList<Integer> getIds() {
-		return new ArrayList<Integer>(rooms.keySet());
+		return new ArrayList<>(rooms.keySet());
 	}
 	
 	public int addRoom(String name) {
@@ -43,7 +43,7 @@ public class INSA {
 	
 	public boolean removeDevice(int idRoom, String type, int idDevice) {
 		Room room = rooms.get(idRoom);
-		return room == null ? false : room.removeDevice(type, idDevice);
+		return room != null && room.removeDevice(type, idDevice);
 	}
 	
 	public ArrayList<Integer> getIdsDevice(int idRoom, String type) {
