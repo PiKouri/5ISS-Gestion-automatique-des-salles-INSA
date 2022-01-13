@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/centralManager")
@@ -33,9 +35,19 @@ public class CentralManagerController {
     @GetMapping("/")
     public String test() {
         String result = "";
-        Integer i = restTemplate.postForObject(lightSensor, "", Integer.class);
-        restTemplate.put(lightSensor + i, 12.0, Float.class);
-        Integer id = restTemplate.getForObject(lightSensor + i, Integer.class);
-        return id != null ? id.toString() : "Error";
+//        Integer i = restTemplate.postForObject(lightSensor, "", Integer.class);
+//        restTemplate.put(lightSensor + i, 12.0, Float.class);
+//        Integer id = restTemplate.getForObject(lightSensor + i, Integer.class);
+//        if (id!=null) result += id +"\n";
+
+        Integer i1 = restTemplate.postForObject(rooms, "Room 1", Integer.class);
+        Integer i2 = restTemplate.postForObject(rooms, "Room 2", Integer.class);
+//        restTemplate.put(lightSensor + i, 12.0, Float.class);
+        ArrayList<Integer> ids = restTemplate.getForObject(rooms , ArrayList.class);
+        for (int i : Objects.requireNonNull(ids)) {
+            String name = restTemplate.getForObject(rooms+i , String.class);
+            result += i + " : " + name + "\n";
+        }
+        return result;
     }
 }
