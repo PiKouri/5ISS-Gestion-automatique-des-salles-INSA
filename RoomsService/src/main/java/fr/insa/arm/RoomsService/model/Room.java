@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Room {
 
-	private class MyTimer {
+	private static class MyTimer {
 		private long start = 0L;
 
 		public MyTimer() { }
@@ -94,7 +94,7 @@ public class Room {
 		case "HEATING_A": 
 			heatingActuator.add(id);
 			break;
-		case "CLIM_A": 
+		case "COOLING_A":
 			climActuator.add(id);
 			break;
 		case "LIGHT_A":
@@ -126,7 +126,7 @@ public class Room {
 			return alarmActuator.remove(Integer.valueOf(id));
 		case "HEATING_A": 
 			return heatingActuator.remove(Integer.valueOf(id));
-		case "CLIM_A": 
+		case "COOLING_A":
 			return climActuator.remove(Integer.valueOf(id));
 		case "LIGHT_A":
 			return lightActuator.remove(Integer.valueOf(id));
@@ -156,7 +156,7 @@ public class Room {
 			return alarmActuator;
 		case "HEATING_A": 
 			return heatingActuator;
-		case "CLIM_A": 
+		case "COOLING_A":
 			return climActuator;
 		case "LIGHT_A":
 			return lightActuator;

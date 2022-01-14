@@ -1,16 +1,11 @@
 package fr.insa.arm.CentralManagerService.controller;
 
+import fr.insa.arm.CentralManagerService.model.ManagerProcess;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @RestController
 @RequestMapping("/centralManager")
@@ -19,35 +14,46 @@ public class CentralManagerController {
     @Autowired
     private RestTemplate restTemplate;
 
-    // Urls
-    final private static String rooms = "http://RoomsService/rooms/";
-    final private static String lightSensor = "http://LightSensorService/lightSensor/";
-    final private static String temperatureSensor = "http://TemperatureSensorService/temperatureSensor/";
-    final private static String gazSensor = "http://GazSensorService/gazSensor/";
-    final private static String co2Sensor = "http://GazSensorService/co2Sensor/";
-    final private static String window = "http://WindowService/window/";
-    final private static String door = "http://DoorService/door/";
-    final private static String light = "http://LightService/light/";
-    final private static String heating = "http://HeatingService/heating/";
-    final private static String cooling = "http://CoolingService/cooling/";
-    final private static String alarm = "http://AlarmService/alarm/";
+    private final ManagerProcess managerProcess = new ManagerProcess();
+
+    public CentralManagerController() {
+        int timerDelay = 5000;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(managerProcess, 0, timerDelay);
+    }
+
+    @PostMapping("/start")
+    public String start() {
+        managerProcess.restTemplate = restTemplate;
+        if (!ManagerProcess.running) {
+            ManagerProcess.running = true;
+            return "success";
+        } else {
+            return "already running";
+        }
+    }
+
+    @PostMapping("/stop")
+    public String stop() {
+        managerProcess.restTemplate = restTemplate;
+        if (ManagerProcess.running) {
+            ManagerProcess.running = false;
+            return "success";
+        } else {
+            return "not running";
+        }
+    }
 
     @GetMapping("/")
-    public String test() {
-        String result = "";
-//        Integer i = restTemplate.postForObject(lightSensor, "", Integer.class);
-//        restTemplate.put(lightSensor + i, 12.0, Float.class);
-//        Integer id = restTemplate.getForObject(lightSensor + i, Integer.class);
-//        if (id!=null) result += id +"\n";
+    public String getStatus() {
+        managerProcess.restTemplate = restTemplate;
+        return ManagerProcess.running ? "central manager is running" : "central manager is not running";
+    }
 
-        Integer i1 = restTemplate.postForObject(rooms, "Room 1", Integer.class);
-        Integer i2 = restTemplate.postForObject(rooms, "Room 2", Integer.class);
-//        restTemplate.put(lightSensor + i, 12.0, Float.class);
-        ArrayList<Integer> ids = restTemplate.getForObject(rooms , ArrayList.class);
-        for (int i : Objects.requireNonNull(ids)) {
-            String name = restTemplate.getForObject(rooms+i , String.class);
-            result += i + " : " + name + "\n";
-        }
-        return result;
+    @GetMapping("/test")
+    public String test() {
+        managerProcess.restTemplate = restTemplate;
+        managerProcess.test();
+        return "BRAVO";
     }
 }
