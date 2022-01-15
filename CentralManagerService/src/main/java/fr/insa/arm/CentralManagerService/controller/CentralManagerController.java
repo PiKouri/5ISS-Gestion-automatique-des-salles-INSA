@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/centralManager")
 public class CentralManagerController {
