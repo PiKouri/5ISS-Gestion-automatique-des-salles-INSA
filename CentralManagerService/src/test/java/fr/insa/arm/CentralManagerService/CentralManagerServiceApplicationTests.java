@@ -49,7 +49,7 @@ class CentralManagerServiceApplicationTests {
 		assert centralManagerController.managerProcess.getMean(values2) == 20.0f;
 
 		ArrayList<Float> values3 = new ArrayList<>(Arrays.asList(10.0f,20.0f,30.0f,45.0f));
-		assert centralManagerController.managerProcess.getMean(values3) == 26.25f;
+		assert !centralManagerController.managerProcess.getMean(values3) == 26.25f;
 	}
 
 }
