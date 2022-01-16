@@ -1,7 +1,7 @@
 const defaultUrl = 'http://localhost';
 
 export default {
-  centralManager: defaultUrl + ':8092/rooms/',
+  centralManager: defaultUrl + ':8092/centralManager/',
   rooms: defaultUrl + ':8081/rooms/',
   lightSensor: defaultUrl + ':8082/lightSensor/',
   temperatureSensor: defaultUrl + ':8083/temperatureSensor/',
@@ -15,4 +15,7 @@ export default {
   alarm: defaultUrl + ':8091/alarm/',
 };
 
-export const fetcher = (url: string) => fetch(url).then((res) => res.json());
+export const jsonFetcher = (url: string) =>
+  fetch(url).then((res) => res.json());
+export const textFetcher = (url: string) =>
+  fetch(url).then((res) => res.text());

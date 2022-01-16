@@ -17,7 +17,7 @@ public class ManagerProcess extends TimerTask {
     final private static String lightSensor = "http://LightSensorService/lightSensor/";
     final private static String temperatureSensor = "http://TemperatureSensorService/temperatureSensor/";
     final private static String gazSensor = "http://GazSensorService/gazSensor/";
-    final private static String co2Sensor = "http://GazSensorService/co2Sensor/";
+    final private static String co2Sensor = "http://Co2SensorService/co2Sensor/";
     final private static String window = "http://WindowService/window/";
     final private static String door = "http://DoorService/door/";
     final private static String light = "http://LightService/light/";
@@ -68,7 +68,7 @@ public class ManagerProcess extends TimerTask {
     private void manageWindows(Integer roomId, ArrayList<Integer> co2Ids, ArrayList<Integer> temperatureIds) {
         ArrayList<Integer> windowIds = restTemplate.getForObject(devicesUrl(roomId) + "WINDOW_A", ArrayList.class);
         ArrayList<Float> co2Values = co2Ids.stream().map(id -> restTemplate.getForObject(co2Sensor + id, Float.class)).collect(Collectors.toCollection(ArrayList::new));
-        if ( Collections.max(co2Values)  >= 1000f) {
+        if ( !co2Values.isEmpty() && Collections.max(co2Values)  >= 1000f) {
             openWindows(windowIds);
         } else {
             ArrayList<Float> temperatureValues = temperatureIds.stream().map(id -> restTemplate.getForObject(temperatureSensor + id, Float.class)).collect(Collectors.toCollection(ArrayList::new));
@@ -133,7 +133,7 @@ public class ManagerProcess extends TimerTask {
         ArrayList<Integer> alarmIds = restTemplate.getForObject(devicesUrl(roomId) + "ALARM_A", ArrayList.class);
         Integer nbPersons = restTemplate.getForObject(rooms + roomId + "/persons", Integer.class);
         ArrayList<Float> gazValues = gazIds.stream().map(id -> restTemplate.getForObject(gazSensor + id, Float.class)).collect(Collectors.toCollection(ArrayList::new));
-        if (Collections.max(gazValues) >= 100) {
+        if (!gazValues.isEmpty() && Collections.max(gazValues) >= 100) {
             turnOnAlarms(alarmIds);
         } else if (nbPersons > 20) {
             turnOnAlarms(alarmIds);
