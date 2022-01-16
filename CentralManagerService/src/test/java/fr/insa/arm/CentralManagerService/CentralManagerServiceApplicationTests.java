@@ -37,7 +37,7 @@ class CentralManagerServiceApplicationTests {
 		calendar.set(Calendar.HOUR_OF_DAY, 21);
 		assert centralManagerController.managerProcess.isWorkingHours(calendar.getTime());
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		assert centralManagerController.managerProcess.isWorkingHours(calendar.getTime());
+		assert !centralManagerController.managerProcess.isWorkingHours(calendar.getTime());
 	}
 
 	@Test
