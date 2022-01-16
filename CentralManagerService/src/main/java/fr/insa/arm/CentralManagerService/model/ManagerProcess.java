@@ -33,15 +33,18 @@ public class ManagerProcess extends TimerTask {
         return restTemplate.getForObject(rooms, ArrayList.class);
     }
 
-    private boolean isWorkingHours() {
-        Date date = new Date();
+    public boolean isWorkingHours(Date date) {
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(date);
         int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
         return (hourOfDay >= 7 && hourOfDay <= 22);
     }
 
-    private Float getMean(ArrayList<Float> values) {
+    public boolean isWorkingHours() {
+        return isWorkingHours(new Date());
+    }
+
+    public Float getMean(ArrayList<Float> values) {
         Float mean = 0f;
         if (values.isEmpty()) {
             return null;

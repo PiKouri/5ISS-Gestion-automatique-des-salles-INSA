@@ -15,7 +15,7 @@ public class CentralManagerController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final ManagerProcess managerProcess = new ManagerProcess();
+    public final ManagerProcess managerProcess = new ManagerProcess();
 
     public CentralManagerController() {
         int timerDelay = 5000;
