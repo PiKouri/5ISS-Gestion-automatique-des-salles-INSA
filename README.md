@@ -6,4 +6,4 @@ Les démonstrations de l'interface utilisateur sont disponibles sur la playlist 
 <a href="https://www.youtube.com/playlist?list=PLxDDp17xIPQfKdgL3wNmTq5wKW1BxHXDM" target="_blank">https://www.youtube.com/playlist?list=PLxDDp17xIPQfKdgL3wNmTq5wKW1BxHXDM</a>
 
 ### Tests unitaires
-![](https://github.com/PiKouri/5ISS-Gestion-automatique-des-salles-INSA/workflows/tests/badge.svg)
+CentralManagerServiceWorkflow : ![Worflow badge](https://github.com/PiKouri/5ISS-Gestion-automatique-des-salles-INSA/actions/workflows/centralManagerServiceWorkflow.yaml/badge.svg)
